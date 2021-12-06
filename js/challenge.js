@@ -1,5 +1,5 @@
 //Define Variables:
-const counter =document.getElementById("counter")
+let counter =document.getElementById("counter")
 const minus =document.getElementById("minus")
 const plus =document.getElementById("plus")
 const heart =document.getElementById("heart")
@@ -7,21 +7,24 @@ const pause =document.getElementById("pause")
 const form =document.querySelector('form')
 const submit =document.getElementById('submit')
 const comment =document.getElementById("#comment-input")
-const allButtons =document.getElementsByClassName("#button")
+//const allButtons =document.getElementsByClassName("#button")
 
 function timer(){
-    setInterval(function(){
-        return counter.innerText++},
-        1000)
+    let counter =document.getElementById("counter")
+    let counterNumber = parseInt(counter.innerText);
+    counter.innerText = counterNumber++
+    //setInterval(function(){
+        //return counter.innerText++},
+       // 1000)
 }
 
 //WORKS!!! Timer-- increments every second after page has loaded
 document.addEventListener("DOMContentLoaded", () => {
     counter.innerText = 0; 
     timer();
-    //setInterval(function(){
+   // setInterval(function(){
     //return counter.innerText++},
-    //1000)
+   // 1000)
     })
 
 
@@ -48,25 +51,25 @@ heart.addEventListener("click", (e) => {
     //console.log(CountButtonHomeClicks);
   //});
 
-//Can Pause/Resumer counter
+//Can Pause/Resume counter
 pause.addEventListener("click", haltCounter);
-
+let newCounter = setInterval(timer, 1000)
 function haltCounter(){
-    if(pause.innterText = "pause"){
+    if(pause.innerText == "pause"){
     pause.innerText = "resume";
     minus.disabled = true;
     plus.disabled = true;
     heart.disabled = true;
     submit.disabled = true;
-    clearInterval(counter)
+    clearInterval(newCounter)
     //counter.innerText
     }else{
         pause.innerText = "pause";
         minus.disabled = false;
-        plus.diabled = false;
+        plus.disabled = false;
         heart.disabled = false;
-        submit.diabled = false;
-        counter= setInterval(timer, 1000)
+        submit.disabled = false;
+        newCounter= setInterval(timer, 1000)
         counter.innerText++;
     }
 }
